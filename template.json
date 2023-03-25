@@ -162,6 +162,16 @@
 									}
 								},
 								"Compose": {
+									"inputs": "@replace(variables('HistoricalMessages'), '{{UserPlaceHolder}}', outputs('Compose_-_Format_Teams_message'))",
+									"runAfter": {
+										"Compose_-_Format_Teams_message": [
+											"Succeeded"
+										]
+									},
+									"type": "Compose"
+								},
+								"Compose_-_Format_Teams_message": {
+									"inputs": "@replace(replace(replace(replace(body('Parse_JSON_3')?['body']?['plainTextContent'], '\\', '\\\\'), '\"', '\\\"'), '\n', '\\r'), '\n', '\\n')",
 									"runAfter": {
 										"Set_variable": [
 											"Succeeded",
@@ -172,8 +182,7 @@
 											"Skipped"
 										]
 									},
-									"type": "Compose",
-									"inputs": "@replace(variables('HistoricalMessages'), '{{UserPlaceHolder}}', body('Parse_JSON_3')?['body']?['plainTextContent'])"
+									"type": "Compose"
 								},
 								"Compose_-_Get_First_Choice": {
 									"runAfter": {
