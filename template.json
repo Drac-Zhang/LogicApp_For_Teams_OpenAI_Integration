@@ -102,6 +102,10 @@
 						"blobname": {
 							"defaultValue": "[parameters('storage_account_name')]",
 							"type": "String"
+						},
+						"channelId": {
+							"defaultValue": "[parameters('teams_channel_id')]",
+							"type": "String"
 						}
 					},
 					"triggers": {
@@ -110,7 +114,7 @@
 							"inputs": {
 								"body": {
 									"channels": [
-										"[parameters('teams_channel_id')]"
+										"@decodeUriComponent(parameters('channelId'))"
 									],
 									"groupId": "[parameters('teams_group_id')]",
 									"notificationUrl": "@{listCallbackUrl()}"
@@ -252,7 +256,7 @@
 									"inputs": {
 										"body": {
 											"recipient": {
-												"channelId": "[parameters('teams_channel_id')]",
+												"channelId": "@decodeUriComponent(parameters('channelId'))",
 												"groupId": "[parameters('teams_group_id')]",
 												"parentMessageId": "@items('For_each_3')?['replyToMessageId']"
 											}
@@ -425,7 +429,7 @@
 											"messageBody": "<p>@{replace(outputs('Compose_-_Get_First_Choice'), '\n', '<br/>')}</p>",
 											"parentMessageId": "@items('For_each_3')?['replyToMessageId']",
 											"recipient": {
-												"channelId": "[parameters('teams_channel_id')]",
+												"channelId": "@decodeUriComponent(parameters('channelId'))",
 												"groupId": "[parameters('teams_group_id')]"
 											}
 										},
