@@ -439,7 +439,7 @@
 											}
 										},
 										"method": "post",
-										"path": "/v1.0/teams/conversation/replyWithMessage/poster/@{encodeURIComponent('User')}/location/@{encodeURIComponent('Channel')}"
+										"path": "/v1.0/teams/conversation/replyWithMessage/poster/@{encodeURIComponent('Flow bot')}/location/@{encodeURIComponent('Channel')}"
 									}
 								},
 								"Set_variable": {
